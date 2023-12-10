@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const db = mysql.createConnection({
   host: "bvufh1lwpw1midiivnpg-mysql.services.clever-cloud.com",
   user: "ugkwm8l3wm9omuhv",
-  password: "ugkwm8l3wm9omuhv",
+  password: "i57P2AdpPgjrfoQy1G3V",
   database: "bvufh1lwpw1midiivnpg",
 });
 

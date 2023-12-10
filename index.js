@@ -9,11 +9,12 @@ const bcrypt = require("bcrypt");
 const app = express();
 app.use(
   cors({
-    origin: ["https://yeffso.netlify.app/"],
+    origin: "*",
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

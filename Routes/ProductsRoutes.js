@@ -7,10 +7,11 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const db = mysql.createConnection({
-  host: "bvufh1lwpw1midiivnpg-mysql.services.clever-cloud.com",
-  user: "ugkwm8l3wm9omuhv",
-  password: "i57P2AdpPgjrfoQy1G3V",
-  database: "bvufh1lwpw1midiivnpg",
+  host: process.env.DB_HOST, 
+  user: process.env.DB_USERNAME, 
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DBNAME,
+  waitForConnections: true,
 });
 
 const requireAuth = (req, res, next) => {

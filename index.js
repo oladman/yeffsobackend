@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+require('dotenv').config()
 
 
 const app = express();
@@ -16,16 +17,18 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 
 const db = mysql.createConnection({
-  host: "bvufh1lwpw1midiivnpg-mysql.services.clever-cloud.com",
-  user: "ugkwm8l3wm9omuhv",
-  password: "i57P2AdpPgjrfoQy1G3V",
-  database: "bvufh1lwpw1midiivnpg",
+    host: process.env.DB_HOST, 
+    user: process.env.DB_USERNAME, 
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DBNAME,
+    waitForConnections: true,
 });
+
 
 const MenRouter = require("./Routes/MensRoutes");
 const LoginRoute = require("./Routes/LoginRoute");
@@ -90,7 +93,9 @@ app.get("/logout", (req, res) => {
 });
 
 
+const PORT = process.env.PORT || 9091
 
-app.listen("9091", () => {
+app.listen(PORT, () => {
   console.log("server listening on port 9091");
-});
+})
+

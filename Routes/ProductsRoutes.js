@@ -6,13 +6,8 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST, 
-  user: process.env.DB_USERNAME, 
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DBNAME,
-  waitForConnections: true,
-});
+const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
+const db = mysql.createConnection(urlDB);
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.token;

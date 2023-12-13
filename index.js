@@ -5,7 +5,8 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 require('dotenv').config()
-
+ 
+const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
 
 const app = express();
 app.use(cors({
@@ -21,13 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 
-const db = mysql.createConnection({
-    host: process.env.DB_HOST, 
-    user: process.env.DB_USERNAME, 
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DBNAME,
-    waitForConnections: true,
-});
+const db = mysql.createConnection(urlDB);
 
 
 const MenRouter = require("./Routes/MensRoutes");

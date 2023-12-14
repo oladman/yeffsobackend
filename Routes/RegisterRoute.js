@@ -1,11 +1,10 @@
+const db = require("../database/index")
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 
-const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
-const db = mysql.createConnection(urlDB);
 
   const salt = 10;
 

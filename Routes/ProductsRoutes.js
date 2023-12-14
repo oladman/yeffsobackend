@@ -1,3 +1,4 @@
+const db = require("../database/index")
 const express = require("express");
 const multer = require("multer");
 const mysql = require("mysql");
@@ -6,8 +7,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
-const db = mysql.createConnection(urlDB);
+
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.token;
@@ -16,13 +16,13 @@ const requireAuth = (req, res, next) => {
     jwt.verify(token, "secret-key", (err, decoded) => {
       if (err) {
         console.log(err.message);
-        return res.redirect("http://localhost:3000/");
+        return res.redirect("https://yeffso.netlify.app/");
       } else {
         next();
       }
     });
   } else {
-    return res.redirect("http://localhost:3000/");
+    return res.redirect("https://yeffso.netlify.app/");
   }
 };
 

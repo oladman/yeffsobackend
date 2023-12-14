@@ -1,3 +1,4 @@
+const db = require("../database/index")
 const express = require("express");
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
@@ -6,7 +7,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 require('dotenv').config()
  
-const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
+
 
 const app = express();
 app.use(cors({

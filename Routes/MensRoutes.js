@@ -1,3 +1,4 @@
+const db = require("../database/index")
 const express = require("express");
 const multer = require('multer');
 const mysql = require("mysql");
@@ -6,9 +7,6 @@ const path = require("path");
 
 
 const router = express.Router();
-
-const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
-const db = mysql.createConnection(urlDB);
   
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

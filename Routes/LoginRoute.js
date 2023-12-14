@@ -1,3 +1,4 @@
+const db = require("../database/index")
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql");
@@ -5,8 +6,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-const urlDB= `mysql://root:GdCbAAHadgG-63fB14G1A1gH42AeCd6b@monorail.proxy.rlwy.net:14058/railway`
-const db = mysql.createConnection(urlDB);
+
 
 
 router.post("/", (req, res) => {

@@ -1,4 +1,4 @@
-const db = require("../database/index")
+
 const express = require("express");
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
@@ -21,9 +21,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
-
-
-const db = mysql.createConnection(urlDB);
 
 
 const MenRouter = require("./Routes/MensRoutes");

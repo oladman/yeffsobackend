@@ -1,7 +1,9 @@
 const db = require("../database/index")
+
+
+
 const express = require("express");
 const router = express.Router();
-const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");

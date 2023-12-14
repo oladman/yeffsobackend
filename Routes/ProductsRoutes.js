@@ -1,7 +1,6 @@
 const db = require("../database/index")
 const express = require("express");
 const multer = require("multer");
-const mysql = require("mysql");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 

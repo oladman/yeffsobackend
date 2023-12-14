@@ -10,11 +10,7 @@ require('dotenv').config()
 
 const app = express();
 app.use(cors({
-  origin: function(origin, callback){
-    return callback(null, true);
-  },
-  optionsSuccessStatus: 200,
-  credentials: true
+  origin: 'https://yeffso.netlify.app'
 }));
 app.use(cookieParser());
 app.use(express.json());

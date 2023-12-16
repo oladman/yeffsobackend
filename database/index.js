@@ -15,4 +15,4 @@ db.getConnection((err, conn) => {
     console.log("Connected successfully")
 })
 
-module.exports = db.promise()
+module.exports = db

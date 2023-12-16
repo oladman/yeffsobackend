@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const router = express();
 
-
+const app = express();
 app.use(cors());
 
 const requireAuth = (req, res, next) => {

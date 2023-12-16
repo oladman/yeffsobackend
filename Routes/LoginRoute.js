@@ -7,6 +7,8 @@ const router = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+
+const app = express();
 app.use(cors());
 
 

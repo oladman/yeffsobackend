@@ -1,5 +1,5 @@
-const express = require("express");
 const db = require("./database/index")
+const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
@@ -79,9 +79,9 @@ app.get("/logout", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 9091
+const PORT = process.env.PORT || 3036
 
 app.listen(PORT, () => {
-  console.log("server listening on port 9091");
+  console.log("server listening on port 3036");
 })
 

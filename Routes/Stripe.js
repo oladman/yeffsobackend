@@ -3,10 +3,11 @@ const db = require("../database/index")
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const express = require('express');
 const app = express();
+const cors = require("cors");
 app.use(express.static('public'));
 require("dotenv").config()
 
-
+app.use(cors());
 const router = express.Router()
 
 router.post('/create-checkout-session', async (req, res) => {

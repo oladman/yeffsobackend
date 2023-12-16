@@ -1,13 +1,13 @@
 const db = require("../database/index")
 
 
-
+const cors = require("cors");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-
+app.use(cors());
 
 
 

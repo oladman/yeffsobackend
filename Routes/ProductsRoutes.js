@@ -3,10 +3,10 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
-
+const cors = require("cors");
 const router = express.Router();
 
-
+app.use(cors());
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.token;

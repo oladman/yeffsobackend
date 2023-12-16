@@ -3,10 +3,11 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const router = express.Router();
 
-
+app.use(cors());
 router.get("/:id", (req, res) => {
   const sql =
     "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";

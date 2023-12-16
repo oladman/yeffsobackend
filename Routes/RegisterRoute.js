@@ -5,8 +5,9 @@ const bcrypt = require("bcrypt");
 const cors = require("cors");
 
 
-  const salt = 10;
 
+  const salt = 10;
+  app.use(cors());
 router.post("/", (req, res) => {
     const sql =
       "INSERT INTO users (`FirstName`, `LastName`, `Email`, `PhoneNumber`, `Password`, `Role`) VALUES (?)";

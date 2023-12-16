@@ -3,6 +3,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const app = express();
 const router = express();

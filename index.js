@@ -23,7 +23,6 @@ const WomenRoute = require("./Routes/WomenRoute");
 const BeltsRoute = require("./Routes/BeltsRoute");
 const KidsRoute = require("./Routes/KidsRoute");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
-const stripe = require("./Routes/Stripe")
 const UsersRoute = require("./Routes/UsersRoute")
 
 app.use("/men", MenRouter);
@@ -33,7 +32,6 @@ app.use("/kids", KidsRoute);
 app.use("/login", LoginRoute);
 app.use("/register", RegisterRoute);
 app.use("/products", ProductsRoutes);
-app.use("/api/stripe", stripe)
 app.use("/users", UsersRoute)
 
 

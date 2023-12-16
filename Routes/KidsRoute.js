@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const router = express.Router();
 
-
+const app = express();
 app.use(cors());
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

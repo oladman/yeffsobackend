@@ -1,6 +1,6 @@
 const db = require("../database/index")
 const express = require("express");
-const router = express.Router();
+const router = express();
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 

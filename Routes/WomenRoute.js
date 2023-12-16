@@ -5,7 +5,7 @@ const path = require("path");
 
 
 
-const router = express.Router();
+const router = express();
 
 app.use(cors());
 const storage = multer.diskStorage({

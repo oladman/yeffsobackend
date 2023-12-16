@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const router = express.Router();
+const router = express();
 
 
 app.use(cors());

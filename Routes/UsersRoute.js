@@ -5,7 +5,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 
 
-const router = express.Router();
+const router = express();
 
 app.use(cors());
 router.get("/:id", (req, res) => {

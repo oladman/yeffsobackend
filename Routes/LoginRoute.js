@@ -7,7 +7,7 @@ const router = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 const app = express();
 app.use(cors());

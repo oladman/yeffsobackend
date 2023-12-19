@@ -77,9 +77,9 @@ app.get("/logout", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3036
+const PORT = process.env.PORT || 8081
 
 app.listen(PORT, () => {
-  console.log("server listening on port 3036");
+  console.log("server listening on port 8081");
 })
 

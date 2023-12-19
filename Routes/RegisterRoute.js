@@ -11,7 +11,7 @@ const salt = 10;
 app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 
-router.get("/", (req, res) => res.send("Main Register Page"));
+router.get("/", (req, res) => res.send("Register Page"));
 router.post("/", (req, res) => {
   const sql =
     "INSERT INTO users (`FirstName`, `LastName`, `Email`, `PhoneNumber`, `Password`, `Role`) VALUES (?)";

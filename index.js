@@ -56,7 +56,7 @@ const verifyUser = (req, res, next) => {
 };
 
 
-app.get("/", verifyUser, (req, res) => {
+app.get("/", (req, res) => {
   return res.json({ Status: "Success", Email: req.Email, Role: req.Role , id: req.id, FirstName: req.FirstName });
 });
 

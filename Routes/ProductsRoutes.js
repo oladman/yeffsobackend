@@ -7,7 +7,7 @@ const cors = require("cors");
 const router = express();
 
 const app = express();
-app.use(cors());
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.token;
@@ -61,7 +61,7 @@ router.post("/", upload.single("image"), (req, res) => {
   });
 });
 
-router.get("/", requireAuth, (req, res) => {
+router.get("/", (req, res) => {
   const sql = "SELECT * FROM products";
   db.query(sql, (err, result) => {
     if (err) return res.json({ Error: "Cannot Fetch Data" });

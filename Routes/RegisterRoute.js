@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     req.body.password,
     req.body.role,
   ];
-  db.query(sql, [values], (err, result) => {
+  db.query(sql, [RegValue], (err, result) => {
     if (err) return res.json({ Error: "Error inserting into server" });
     return res.json({ Status: "Success" });
   });

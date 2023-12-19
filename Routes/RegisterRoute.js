@@ -23,6 +23,7 @@ router.post("/", (req, res) => {
       req.body.role,
     ];
     db.query(sql, [RegValue], (err, result) => {
+      console.log(RegValue)
       if (err) return res.json({ Error: "Error inserting into server" });
       return res.json({ Status: "Success" });
     });

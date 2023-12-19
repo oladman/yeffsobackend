@@ -15,7 +15,7 @@ app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 router.get("/", (req, res) => res.send("Main Register Page"));
 
 
-router.post("/", async (req, res) => {
+router.post("/", (req, res) => {
   const sql =
   "INSERT INTO users (`FirstName`, `LastName`, `Email`, `PhoneNumber`, `Password`, `Role`) VALUES (?)";
   const RegValue = [
@@ -27,6 +27,8 @@ router.post("/", async (req, res) => {
     req.body.role,
   ];
   db.query(sql, [RegValue], (err, result) => {
+    console.log(RegValue)
+
     if (err) return res.json({ Error: "Error inserting into server" });
     return res.json({ Status: "Success" });
   });

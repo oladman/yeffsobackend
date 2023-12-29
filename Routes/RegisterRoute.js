@@ -12,7 +12,8 @@ app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 
 router.get("/", (req, res) => res.send("Register Page"));
-router.post("/", (req, res) => {
+
+router.post("/", async (req, res) => {
   const sql =
     "INSERT INTO users (`FirstName`, `LastName`, `Email`, `PhoneNumber`, `Password`, `Role`) VALUES (?)";
   bcrypt.hash(req.body.password.toString(), salt, (err, hash) => {
@@ -25,7 +26,7 @@ router.post("/", (req, res) => {
       hash,
       req.body.role,
     ];
-    db.query(sql, [RegValue], (err, result) => {
+     db.query(sql, [RegValue], (err, result) => {
       console.log(RegValue)
       if (err) return res.json({ Error: "Error inserting into server" });
       return res.json({ Status: "Success" });

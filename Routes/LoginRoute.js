@@ -31,10 +31,12 @@ router.post("/", (req, res) => {
               const FirstName = data[0].FirstName;
               const token = jwt.sign({ Email, Role, id, FirstName }, "secret-key", {
                 expiresIn: "1d",
+                
               });
+            
               res.cookie("token", token);
   
-              return res.json({ Status: "Success" });
+              return res.json({ Status: "Success", token, FirstName,id, Role, Email });
             } else {
               return res.json({ Error: "Password Incorrect" });
             }

@@ -45,10 +45,10 @@ const verifyUser = (req, res, next) => {
       if (err) {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
-        req.Email = decoded.Email;
         req.Role = decoded.Role;
         req.id = decoded.id;
         req.FirstName = decoded.FirstName;
+        
         next();
       }
     });
@@ -57,10 +57,10 @@ const verifyUser = (req, res, next) => {
 
 
 app.get("/", verifyUser, (req, res) => {
-  return res.json({ Status: "Success", Email: req.Email, Role: req.Role , id: req.id, FirstName: req.FirstName });
+  return res.json({ Status: "Success", Role: req.Role , id: req.id, FirstName: req.FirstName });
 });
 
-app.get("/user/:id", (req, res) => {
+app.get("/user/:id",  (req, res) => {
   const sql =
     "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";
   const id = req.params.id;
@@ -71,9 +71,9 @@ app.get("/user/:id", (req, res) => {
 });
 
 
-app.get("/logout", async (req, res) => {
+app.get("/logout",  (req, res) => { 
   res.status(202).clearCookie('token').send('cookie cleared')
-  res.redirect("/")
+ 
 });
 
 

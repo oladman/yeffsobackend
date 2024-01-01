@@ -1,4 +1,4 @@
-const db = require("../database/index")
+const db = require("../database/index");
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
@@ -9,60 +9,123 @@ const app = express();
 const router = express();
 
 app.use(cors());
-router.get("/:id", (req, res) => {
-  const sql =
-    "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";
-  const id = req.params.id;
-  db.query(sql, [id], (err, result) => {
-    if (err) return res.json({ Error: "Cannot Fetch Data Users profile" });
-    return res.json(result);
-  });
+
+const verifytoken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "You dont have a verified token" });
+  } else {
+    jwt.verify(token, "secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Invalid Token, Kindly Login Again" });
+      } else {
+        const userId = decoded.id;
+        console.log(
+          "id",
+          userId,
+          decoded.Email,
+          decoded.FirstName,
+          decoded.Role
+        );
+        next();
+      }
+    });
+  }
+};
+
+router.get("/", async (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "You dont have a verified token" });
+  } else {
+    jwt.verify(token, "secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Invalid Token, Kindly Login Again" });
+      } else {
+        const userId = decoded.id;
+        //fetch user next
+        const sql =
+          "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";
+
+        db.query(sql, [userId], (err, result) => {
+          if (err)
+            return res.json({ Error: "Cannot Fetch Data Users profile" });
+          return res.json(result);
+        });
+      }
+    });
+  }
 });
 
-router.put("/profile/:id", (req, res) => {
-  const sql =
-    "UPDATE users SET `DfirstName`=?, `DlastName`=?, `DphoneNumber`=?, `Dstreet`=?, `Ddirections`=?, `Dcity`=?, `Dstate`=?, `Dlocalgva`=? WHERE ID = ?";
-  const id = req.params.id;
+router.put("/profile", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "You dont have a verified token" });
+  } else {
+    jwt.verify(token, "secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Invalid Token, Kindly Login Again" });
+      } else {
+        const userId = decoded.id;
+        //fetch user next
+        const sql =
+          "UPDATE users SET `DfirstName`=?, `DlastName`=?, `DphoneNumber`=?, `Dstreet`=?, `Ddirections`=?, `Dcity`=?, `Dstate`=?, `Dlocalgva`=? WHERE ID = ?";
 
-  db.query(
-    sql,
-    [
-      req.body.Dfirstname,
-      req.body.Dlastname,
-      req.body.Dphonenumber,
-      req.body.Ddeliveryad,
-      req.body.Ddirections,
-      req.body.Dcity,
-      req.body.Dstate,
-      req.body.Dlocalgva,
-      id,
-    ],
-    (err, result) => {
-      if (err) return res.json({ Error: "Cannot Update Profile Address" });
-      return res.json({ Status: "Profile Updated Successfully", result });
-    }
-  );
+        db.query(
+          sql,
+          [
+            req.body.Dfirstname,
+            req.body.Dlastname,
+            req.body.Dphonenumber,
+            req.body.Ddeliveryad,
+            req.body.Ddirections,
+            req.body.Dcity,
+            req.body.Dstate,
+            req.body.Dlocalgva,
+            userId,
+          ],
+          (err, result) => {
+            if (err)
+              return res.json({ Error: "Cannot Update Profile Address" });
+            return res.json({ Status: "Profile Updated Successfully", result });
+          }
+        );
+      }
+    });
+  }
 });
 
-router.put("/profile/edit/:id", (req, res) => {
-  const sql =
-    "UPDATE users SET `FirstName`=?, `LastName`=?, `Email`=?, `Password`=?  WHERE ID = ?";
-  const id = req.params.id;
-
-  db.query(
-    sql,
-    [
-      req.body.FirstName,
-      req.body.LastName,
-      req.body.Email,
-      req.body.Password,
-      id,
-    ],
-    (err, result) => {
-      if (err) return res.json({ Error: "Cannot Update Profile Address" });
-      return res.json({ Status: "Profile Updated Successfully", result });
-    }
-  );
+router.put("/profile/edit", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.json({ Error: "You dont have a verified token" });
+  } else {
+    jwt.verify(token, "secret-key", (err, decoded) => {
+      if (err) {
+        return res.json({ Error: "Invalid Token, Kindly Login Again" });
+      } else {
+        const userId = decoded.id;
+        //fetch user next
+        const sql =
+          "UPDATE users SET `FirstName`=?, `LastName`=?, `Email`=?, `Password`=?  WHERE ID = ?";
+        db.query(
+          sql,
+          [
+            req.body.FirstName,
+            req.body.LastName,
+            req.body.Email,
+            req.body.Password,
+            userId,
+          ],
+          (err, result) => {
+            if (err)
+              return res.json({ Error: "Cannot Update Profile Address" });
+            return res.json({ Status: "Profile Updated Successfully", result });
+          }
+        );
+      }
+    });
+  }
 });
 
 module.exports = router;

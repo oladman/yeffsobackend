@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "https://yeffso.netlify.app" }));
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 router.post("/", (req, res) => {
   const sql = "SELECT * FROM users WHERE Email = ?";
@@ -24,12 +24,11 @@ router.post("/", (req, res) => {
         (err, response) => {
           if (err) return res.json({ Error: "Incorrect Password" });
           if (response) {
-            const Email = data[0].Email;
             const Role = data[0].Role;
             const id = data[0].id;
             const FirstName = data[0].FirstName;
             const token = jwt.sign(
-              { Email, Role, id, FirstName },
+              { Role, id, FirstName },
               "secret-key",
               {
                 expiresIn: "1d",
@@ -48,7 +47,6 @@ router.post("/", (req, res) => {
               FirstName,
               id,
               Role,
-              Email,
             });
           } else {
             return res.json({ Error: "Password Incorrect" });

@@ -71,9 +71,9 @@ app.get("/user/:id", (req, res) => {
 });
 
 
-app.get("/logout", (req, res) => {
-  res.clearCookie("token");
-  return res.json({ Status: "Success" });
+app.get("/logout", async (req, res) => {
+  res.status(202).clearCookie('token').send('cookie cleared')
+  res.redirect("/")
 });
 
 

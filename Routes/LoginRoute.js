@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
+app.use(cors({ credentials: true, origin: "https://yeffso.netlify.app" }));
 
 router.post("/", (req, res) => {
   const sql = "SELECT * FROM users WHERE Email = ?";
@@ -25,15 +25,11 @@ router.post("/", (req, res) => {
           if (err) return res.json({ Error: "Incorrect Password" });
           if (response) {
             const Role = data[0].Role;
-            const customer_id = data[0].customer_id;
+            const id = data[0].customer_id;
             const FirstName = data[0].FirstName;
-            const token = jwt.sign(
-              { Role, customer_id, FirstName },
-              "secret-key",
-              {
-                expiresIn: "1d",
-              }
-            );
+            const token = jwt.sign({ Role, id, FirstName }, "secret-key", {
+              expiresIn: "1d",
+            });
 
             res.cookie("token", token, {
               secure: true,
@@ -45,7 +41,7 @@ router.post("/", (req, res) => {
               Status: "Success",
               token,
               FirstName,
-              customer_id,
+              id,
               Role,
             });
           } else {

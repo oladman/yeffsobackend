@@ -43,14 +43,16 @@ router.get("/", async (req, res) => {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
         const userId = decoded.id;
+        console.log(userId)
+        console.log(token)
        
         //fetch user next
         const sql =
-          "SELECT id, FirstName, LastName, Email, PhoneNumber  FROM users WHERE ID = ?";
+          "SELECT customer_id , FirstName, LastName, Email, PhoneNumber  FROM users WHERE customer_id = ?";
 
         db.query(sql, [userId], (err, result) => {
           if (err)
-            return res.json({ Error: "Cannot Fetch Data Users profile" });
+            return res.json({ Error: "Cannot Fetch Users profile" });
           return res.json(result);
         });
       }

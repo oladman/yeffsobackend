@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "https://yeffso.netlify.app" }));
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 router.post("/", (req, res) => {
   const sql = "SELECT * FROM users WHERE Email = ?";

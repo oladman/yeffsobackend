@@ -43,8 +43,7 @@ router.get("/", async (req, res) => {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
         const userId = decoded.id;
-        console.log(userId)
-        console.log(token)
+       
        
         //fetch user next
         const sql =
@@ -111,7 +110,7 @@ router.put("/profile/edit", async (req, res) => {
         const userId = decoded.id;
         //fetch user next
         const sql =
-          "UPDATE users SET `FirstName`=?, `LastName`=?, `Email`=?, `Password`=?  WHERE ID = ?";
+          "UPDATE users SET `FirstName`=?, `LastName`=?, `Email`=?, `Password`=?  WHERE customer_id = ?";
         db.query(
           sql,
           [

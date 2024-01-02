@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
         console.log(userId)
         //fetch user next
         const sql =
-          "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";
+          "SELECT id, FirstName, LastName, Email, PhoneNumber  FROM users WHERE ID = ?";
 
         db.query(sql, [userId], (err, result) => {
           if (err)
@@ -58,12 +58,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/profile", (req, res) => {
+router.put("/profile", async  (req, res) => {
   const token = req.cookies.token;
   if (!token) {
     return res.json({ Error: "You dont have a verified token" });
   } else {
-    jwt.verify(token, "secret-key", (err, decoded) => {
+    await jwt.verify(token, "secret-key", (err, decoded) => {
       if (err) {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
@@ -73,7 +73,7 @@ router.put("/profile", (req, res) => {
         const sql =
           "UPDATE users SET `DfirstName`=?, `DlastName`=?, `DphoneNumber`=?, `Dstreet`=?, `Ddirections`=?, `Dcity`=?, `Dstate`=?, `Dlocalgva`=? WHERE ID = ?";
 
-        db.query(
+         db.query(
           sql,
           [
             req.body.Dfirstname,
@@ -97,7 +97,7 @@ router.put("/profile", (req, res) => {
   }
 });
 
-router.put("/profile/edit", (req, res) => {
+router.put("/profile/edit", async (req, res) => {
   const token = req.cookies.token;
   if (!token) {
     return res.json({ Error: "You dont have a verified token" });

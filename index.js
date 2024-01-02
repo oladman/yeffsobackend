@@ -46,7 +46,7 @@ const verifyUser = (req, res, next) => {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
         req.Role = decoded.Role;
-        id = decoded.id;
+        req.id = decoded.id;
         req.FirstName = decoded.FirstName;
         
         next();

@@ -25,10 +25,10 @@ router.post("/", (req, res) => {
           if (err) return res.json({ Error: "Incorrect Password" });
           if (response) {
             const Role = data[0].Role;
-            const id = data[0].id;
+            const customer_id = data[0].customer_id;
             const FirstName = data[0].FirstName;
             const token = jwt.sign(
-              { Role, id, FirstName },
+              { Role, customer_id, FirstName },
               "secret-key",
               {
                 expiresIn: "1d",
@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
               Status: "Success",
               token,
               FirstName,
-              id,
+              customer_id,
               Role,
             });
           } else {

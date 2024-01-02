@@ -46,7 +46,7 @@ const verifyUser = (req, res, next) => {
         return res.json({ Error: "Invalid Token, Kindly Login Again" });
       } else {
         req.Role = decoded.Role;
-        req.id = decoded.id;
+        req.customer_id = decoded.customer_id;
         req.FirstName = decoded.FirstName;
         
         next();
@@ -57,18 +57,10 @@ const verifyUser = (req, res, next) => {
 
 
 app.get("/", verifyUser, (req, res) => {
-  return res.json({ Status: "Success", Role: req.Role , id: req.id, FirstName: req.FirstName });
+  return res.json({ Status: "Success", Role: req.Role , customer_id: req.customer_id, FirstName: req.FirstName });
 });
 
-app.get("/user/:id",  (req, res) => {
-  const sql =
-    "SELECT id, FirstName, LastName, Email, PhoneNumber, DfirstName, DlastName, DphoneNumber, Dstreet, Ddirections, Dcity, Dstate, Dlocalgva  FROM users WHERE ID = ?";
-  const id = req.params.id;
-  db.query(sql, [id], (err, result) => {
-    if (err) return res.json({ Error: "Cannot Fetch Data Users profile" });
-    return res.json(result);
-  });
-});
+
 
 
 app.get("/logout",  (req, res) => { 

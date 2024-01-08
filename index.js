@@ -9,7 +9,7 @@ require('dotenv').config()
 
 
 const app = express();
-app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -72,6 +72,6 @@ app.get("/logout",  (req, res) => {
 const PORT = process.env.PORT || 8081
 
 app.listen(PORT, () => {
-  console.log("server listening on port 8081");
+  console.log(`server listening on port ${PORT}`);
 })
 

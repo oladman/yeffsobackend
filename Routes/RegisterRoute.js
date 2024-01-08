@@ -8,7 +8,7 @@ const app = express();
 const router = express();
 
 const salt = 10;
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 
 router.get("/", (req, res) => res.send("Register Page"));

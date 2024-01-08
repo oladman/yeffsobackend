@@ -7,7 +7,7 @@ const cors = require("cors");
 const router = express();
 
 const app = express();
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'https://yeffso.netlify.app'}));
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.token;

@@ -62,7 +62,7 @@ router.post("/", upload.single("image"), (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  const sql = "SELECT * FROM products";
+  const sql = "SELECT * FROM products ORDER BY id DESC";
   db.query(sql, (err, result) => {
     if (err) return res.json({ Error: "Cannot Fetch Data" });
     return res.json(result);

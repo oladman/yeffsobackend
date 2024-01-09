@@ -8,7 +8,7 @@ const router = express();
 app.use(cors());
 
   router.get("/", (req, res) => {
-    const sql = "SELECT * FROM products WHERE Type='Kids'";
+    const sql = "SELECT * FROM products WHERE Type='Kids' ORDER BY id DESC ";
     db.query(sql, (err, result) => {
       if (err) return res.json({ Error: "Cannot Fetch Data" });
       return res.json(result);
